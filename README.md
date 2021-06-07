@@ -8,7 +8,7 @@ The Audio.js file contains all my add-ons reffering to that branch, besides I le
 
 I created a random gradient background every time you choose a letter. If the letter you choose is correct you get a palette of blue colors in the gradient, otherwise red becomes the protagonist.
 
-I also added a button to play or stop background music. 
+I also added a button to play or stop sound effects. 
 
 Thanks again!
 
