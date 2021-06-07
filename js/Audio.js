@@ -21,20 +21,30 @@ const banner = document.getElementById('banner');
 const stopMusic = document.createElement('button');
 stopMusic.style.width = "100px";
 stopMusic.style.height = "30px";
-stopMusic.textContent = "Stop Music";
+stopMusic.textContent = "Sound off";
 stopMusic.style.fontSize = "11px";
 stopMusic.style.position = "static";
 stopMusic.style.left = "50px"; 
 banner.appendChild(stopMusic);
 
+
 //Click event listener to stop/play music.
 stopMusic.addEventListener('click', (event)=>{
-    if(gameMusic.paused === false){
-        stopMusic.textContent = "Play Music";
-        gameMusic.pause();
+    if(stopMusic.textContent === "Sound off"){
+        stopMusic.textContent = "Sound on";
+        gameMusic.muted = true;
+        rightLetter.muted = true;
+        wrongLetter.muted = true;
+        gameOver.muted = true;
+        gameWon.muted = true;
 
-    } else if(gameMusic.paused){
-        stopMusic.textContent = "Stop Music";
-        gameMusic.play();
+    } else if(stopMusic.textContent === "Sound on"){
+        stopMusic.textContent = "Sound off";
+        gameMusic.muted = false;
+        rightLetter.muted = false;
+        wrongLetter.muted = false;
+        gameOver.muted = false;
+        gameWon.muted = false;
+        gameMusic.currentTime = 0;
     }
 });

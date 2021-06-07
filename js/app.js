@@ -1,7 +1,7 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * app.js */
-const newGame = new Game();
+let newGame;
 const qwerty = document.querySelectorAll('.keyrow button');
 
 const startButton = document.getElementById("btn__reset");
@@ -12,9 +12,25 @@ const h2 = document.querySelector('h2');
 
 const oldPhrase = document.querySelectorAll('#phrase li');
 
+//restartAll() calls back other helper functions, reset the score, background color, restart music, etc.
+function restartAll() {
+  newGame.missed = 0;
+  newGame.activePhrase = null;
+  restartIcons()
+  restartKeyboard();
+  restartPhrase();
+  main.style.backgroundColor = 'white';
+  bgStart.backgroundImage = "linear-gradient(0.25turn, blue, white, red)";
+  gameMusic.currentTime = 0;
+  gameMusic.play();
+  newGame.startGame();
+} 
+
 //Click event listener to start the game.
 startButton.addEventListener('click', (e)=>{
-    restartAll();
+  
+  newGame = new Game();
+  restartAll();
 });
 
 //Click event listener for the keyboard. Just selects the keys.
@@ -32,6 +48,7 @@ window.addEventListener('keydown', (event)=>{
   //Starts the game by pressing only the key 'Enter'.
   if(event.key === 'Enter') { 
     if (initialOverlay.style.display !== 'none'){
+      newGame = new Game();
       restartAll();
     }
   }
@@ -70,19 +87,7 @@ function restartPhrase() {
   ul.innerHTML = "";    
 }
 
-//restartAll() calls back other helper functions, reset the score, background color, restart music, etc.
-function restartAll() {
-    newGame.missed = 0;
-    newGame.activePhrase = null;
-    restartIcons()
-    restartKeyboard();
-    restartPhrase();
-    main.style.backgroundColor = 'white';
-    bgStart.backgroundImage = "linear-gradient(0.25turn, blue, white, red)";
-    gameMusic.currentTime = 0;
-    gameMusic.play();
-    newGame.startGame();
-}
+
 
 //Extra styling for the background during the game.
 const main = document.getElementsByClassName('main-container')[0];

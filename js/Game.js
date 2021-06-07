@@ -4,20 +4,19 @@
 const scoreboard = document.querySelectorAll('#scoreboard img');
 
 const displayedLetters = document.getElementsByClassName('show');
-//Game constructor helps building a game taking 3 parameters for its properties and some methods.
+//Game constructor helps building a game with 3 properties and some methods.
 class Game {
-    constructor(missed, phrases, activePhrase){
+    constructor(){
         this.missed = 0;
-        this.phrases = ['Wish you were here', 'Life is an abyss', 'Never surrender', 'You will not win', 'Vaccinate please'];
+        this.phrases = [new Phrase('Wish you were here'), new Phrase('Never surrender'), new Phrase('Life is an abyss'), new Phrase('You will not win'), new Phrase('Vaccinate please')];  
         this.activePhrase = null
     }
 
     startGame() {
 //Hides initial overlay, creates a new phrase using 'randomPhrase' and displays it calling "addPhraseToDisplay". Updates this.activePhrase. 
         initialOverlay.style.display = 'none';
-        let randomPhrase = new Phrase(newGame.getRandomPhrase());
-        let showPhrase = randomPhrase.addPhraseToDisplay();
-        this.activePhrase = randomPhrase; 
+        this.activePhrase = newGame.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
     }
 
     getRandomPhrase() {
@@ -40,6 +39,12 @@ Disables selected buttons too.*/
             rightLetter.play();
             //Helper function to change background gradient color.
             changeBGColor('blue');
+                
+            let gameWon = newGame.checkForWin();
+            //Checks if you win
+                if(gameWon === true){
+                    newGame.gameOver();
+            }
             
         } else {
             event.disabled = true;
@@ -47,11 +52,7 @@ Disables selected buttons too.*/
             event.classList = "wrong";
         }
 
-        let gameWon = newGame.checkForWin();
-        //Checks if you win
-        if(gameWon === true){
-            newGame.gameOver();
-        }
+        
     }
 
     removeLife() {
