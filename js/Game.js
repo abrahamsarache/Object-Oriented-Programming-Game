@@ -107,5 +107,9 @@ Altered elements: h1, h2, overlay background image and CSS classes, win/lose mus
             gameWon.play();
             h2.textContent = 'You Win!';
         }
+        //Resets icons, keyboard keys and phrase
+        restartIcons()
+        restartKeyboard();
+        restartPhrase();
     }
 }

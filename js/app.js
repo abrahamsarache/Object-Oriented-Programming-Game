@@ -12,13 +12,10 @@ const h2 = document.querySelector('h2');
 
 const oldPhrase = document.querySelectorAll('#phrase li');
 
-//restartAll() calls back other helper functions, reset the score, background color, restart music, etc.
+//restartAll() calls back other helper functions, background color, restart music, etc.
 function restartAll() {
   newGame.missed = 0;
   newGame.activePhrase = null;
-  restartIcons()
-  restartKeyboard();
-  restartPhrase();
   main.style.backgroundColor = 'white';
   bgStart.backgroundImage = "linear-gradient(0.25turn, blue, white, red)";
   gameMusic.currentTime = 0;
